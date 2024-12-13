@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AR.js Projekt</title>
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/ar.js/aframe/build/aframe-ar.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- A-Frame Scene -->
+    <a-scene embedded arjs>
+      <!-- AR-Marker -->
+      <a-marker preset="hiro">
+        <!-- 3D-Objekt: Rote Kugel -->
+        <a-sphere 
+          position="0 0.5 0" 
+          radius="0.5" 
+          color="red">
+        </a-sphere>
+      </a-marker>
+
+      <!-- Kamera -->
+      <a-entity camera></a-entity>
+    </a-scene>
+  </body>
+</html>
