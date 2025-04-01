@@ -1,24 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MindAR.js Starter mit GLTF</title>
+    <title>MindAR Starter mit GLTF</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.7/dist/mindar-image-aframe.prod.js"></script>
-    <script>
-      AFRAME.registerComponent("start-ar", {
-        init: function () {
-          const scene = this.el.sceneEl;
-          scene.addEventListener("loaded", () => {
-            const mindarComponent = scene.components["mindar-image-system"];
-            if (mindarComponent && mindarComponent.start) {
-              mindarComponent.start();
-            }
-          });
-        },
-      });
-    </script>
+    <script src="https://unpkg.com/mind-ar@1.1.4/dist/mindar-image-aframe.prod.js"></script>
     <style>
       body {
         margin: 0;
@@ -39,20 +26,22 @@
   <body>
     <div id="overlay">
       <h3>MindAR Marker Detection</h3>
-      <p>Richte die Kamera auf den Marker (z.B. MindAR Beispielbild)</p>
+      <p>Richte die Kamera auf den Marker (z. B. „Card“)</p>
     </div>
 
     <a-scene
-      mindar-image="imageTargetSrc: https://cdn.jsdelivr.net/npm/mind-ar@1.1.7/examples/image-tracking/assets/card-example/card.mind; filterMinCF:0.0001; filterBeta: 0.001;"
+      mindar-image="imageTargetSrc: https://unpkg.com/mind-ar@1.1.4/examples/image-tracking/assets/card-example/card.mind;"
       color-space="sRGB"
       renderer="colorManagement: true, physicallyCorrectLights"
       vr-mode-ui="enabled: false"
       device-orientation-permission-ui="enabled: true"
-      start-ar
       embedded
     >
       <a-assets>
-        <a-asset-item id="model" src="https://cdn.glitch.global/50e065b0-dde7-4d89-83f7-c79c1e7eab3c/scene.gltf?v=1711910838634"></a-asset-item>
+        <a-asset-item
+          id="model"
+          src="https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Models@master/2.0/Duck/glTF/Duck.gltf"
+        ></a-asset-item>
       </a-assets>
 
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
@@ -61,7 +50,7 @@
         <a-entity
           gltf-model="#model"
           position="0 0 0"
-          scale="0.1 0.1 0.1"
+          scale="0.05 0.05 0.05"
           rotation="0 0 0"
         ></a-entity>
       </a-entity>
