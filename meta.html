@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Meta Quest 3 MR Test</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="A-Frame WebXR Passthrough Example for Meta Quest 3" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script>
+      AFRAME.registerComponent("enter-vr-auto", {
+        init: function () {
+          this.el.sceneEl.addEventListener("loaded", () => {
+            this.el.sceneEl.enterVR();
+          });
+        },
+      });
+    </script>
+  </head>
+
+  <body>
+    <a-scene
+      xr-mode="immersive-ar"
+      webxr="optionalFeatures: local-floor, bounded-floor, dom-overlay; overlayElement: #overlay"
+      renderer="colorManagement: true; physicallyCorrectLights: true;"
+      enter-vr-auto
+    >
+      <!-- Transparent background so Passthrough is visible -->
+      <a-entity id="cameraRig">
+        <a-camera position="0 1.6 0"></a-camera>
+      </a-entity>
+
+      <!-- 3D-Objekt im Raum -->
+      <a-box
+        position="0 1 -2"
+        rotation="0 45 0"
+        color="#4CC3D9"
+        depth="0.5"
+        height="0.5"
+        width="0.5"
+      ></a-box>
+
+      <!-- Licht -->
+      <a-entity light="type: directional; color: #ffffff; intensity: 0.8" position="1 3 2"></a-entity>
+      <a-entity light="type: ambient; intensity: 0.5"></a-entity>
+    </a-scene>
+
+    <!-- Optionales Overlay-Element -->
+    <div id="overlay" style="position: absolute; top: 10px; left: 10px; color: white; z-index: 10">
+      <h1 style="font-size: 20px;">👓 Meta Quest MR Test</h1>
+    </div>
+  </body>
+</html>
